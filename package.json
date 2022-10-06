@@ -1,0 +1,31 @@
+{
+  "name": "moneybox-backend",
+  "version": "1.0.0",
+  "description": "Backend for moneybox",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miklegonza/moneybox-backend.git"
+  },
+  "keywords": [
+    "mariadb",
+    "express",
+    "rest"
+  ],
+  "author": "miklegonza",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/miklegonza/moneybox-backend/issues"
+  },
+  "homepage": "https://github.com/miklegonza/moneybox-backend#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "mariadb": "^3.0.1",
+    "path": "^0.12.7"
+  }
+}
