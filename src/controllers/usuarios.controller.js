@@ -2,7 +2,7 @@ const usuariosService = require('../services/usuarios.service');
 
 async function get(req, res, next) {
     try {
-        res.json(await usuariosService.get(req.query.page));
+        res.json(await usuariosService.get(req.query.page, req.query.username));
     } catch (err) {
         console.error('Get error:', err.message);
         next(err);
@@ -11,7 +11,7 @@ async function get(req, res, next) {
 
 async function create(req, res, next) {
     try {
-        res.json(await usuariosService.create(req.body));
+        res.json(await usuariosService.create(req.query));
     } catch (err) {
         console.error('Post error:', err.message);
         next(err);
@@ -20,7 +20,7 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
     try {
-        res.json(await usuariosService.update(req.params.username, req.body));
+        res.json(await usuariosService.update(req.params.username, req.query));
     } catch (err) {
         console.error('Put error:', err.message);
         next(err);
@@ -36,9 +36,4 @@ async function remove(req, res, next) {
     }
 }
 
-module.exports = {
-    get,
-    create,
-    update,
-    remove
-}
+module.exports = { get, create, update, remove }

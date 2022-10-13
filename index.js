@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/usuarios', usuariosRouter);
 //app.use('/ingresos', ingresosRouter);
 //app.use('/gastos', gastosRouter);
-//app.use('/clasificacion', clasificacionRouter);
+app.use('/clasificacion', clasificacionRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

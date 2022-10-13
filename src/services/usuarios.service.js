@@ -2,9 +2,10 @@ const pool = require("./db.service");
 const helper = require("../utils/helper.util");
 const config = require("../configs/db.config");
 
-async function get(page = 1) {
-    let stmt = "SELECT * FROM " + config.db.database + ".usuarios;";
-    const rows = await pool.query(stmt);
+async function get(page = 1, username) {
+    let stmt = (typeof username == "undefined") ? "SELECT * FROM " + config.db.database + ".usuarios;" : "SELECT * FROM " + config.db.database + ".usuarios WHERE usuario = ?;";
+
+    const rows = await pool.query(stmt, username);
     const data = helper.emptyOrRows(rows);
     const meta = { page };
 
@@ -12,24 +13,34 @@ async function get(page = 1) {
 }
 
 async function create(user) {
-    /*const user = {
-        name,
-    };*/
-    let stmt = "INSERT INTO";
-    const result = await pool.query(" statement");
+    const data = [
+        user.nombre,
+        user.telefono,
+        user.email,
+        user.usuario,
+        user.clave
+    ];
+    let stmt = "INSERT INTO " + config.db.database + ".usuarios (nombre, telefono, email, usuario, clave) VALUES (?, ?, ?, ?, ?)";
+    const result = await pool.query(stmt, data);
     return result.affectedRows ? "Usuario creado" : "Error al crear usuario";
 }
 
 async function update(username, user) {
-    let stmt = "UPDATE SET";
-    const result = await pool.query(" statement");
-    return result.affectedRows ? "Usuario creado" : "Error al crear usuario";
+    const data = [
+        user.nombre,
+        user.telefono,
+        user.email,
+        username
+    ];
+    let stmt = "UPDATE " + config.db.database + ".usuarios SET nombre = ?, telefono = ?, email = ? WHERE usuario = ?;";
+    const result = await pool.query(stmt, data);
+    return result.affectedRows ? "Usuario modificado" : "Error al modificar usuario";
 }
 
 async function remove(username) {
-    let stmt = "DELETE FROM";
-    const result = await pool.query(" statement");
-    return result.affectedRows ? "Usuario creado" : "Error al crear usuario";
+    let stmt = "DELETE FROM " + config.db.database + ".usuarios WHERE usuario = ?;";
+    const result = await pool.query(stmt, username);
+    return result.affectedRows ? "Usuario eliminado" : "Error al eliminar usuario";
 }
 
 module.exports = { get, create, update, remove };
