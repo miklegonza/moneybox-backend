@@ -7,8 +7,8 @@ const dbconfig = {
     user: config.db.user,
     password: config.db.pass,
     database: config.db.database,
+    port: config.db.db_port,
     connectionLimit: 100,
-    port: 3308,
     trace: true //esto se quita en prod
 };
 

@@ -1,6 +1,6 @@
 # Simple Persistence API with NodeJS and Express
 
-This is [moneybox's](https://github.com/samirZapata/moneybox) backend application that connects to a MariaDB database built with NodeJS and Express framework.
+This is [moneybox's](https://github.com/samirZapata/Moneybox) backend application that connects to a MariaDB database built with NodeJS and Express framework.
 
 ## Pre-requisites
 
@@ -33,6 +33,7 @@ DB_HOST = localhost
 DB_USER = your-user
 DB_PASS = your-password
 DB_NAME = moneybox
+DB_PORT = 3306
 
 PORT = 3000
 ```
@@ -51,15 +52,31 @@ npm test
 
 Now you can use the API
 
-## Overview
+## API Reference
 
-| Method | URL           | Action                                   |
-| ------ | ------------- | ---------------------------------------- |
-| GET    | /main         | get 'Hello world' to prove that it works |
-| GET    | /usuarios     | get all users                            |
-| POST   | /usuarios     | add new user                             |
-| PUT    | /usuarios/:id | update user by `id`                      |
-| DELETE | /usuarios/:id | remove user by `id`                      |
+| Method | URL                 | Action                                   |
+| ------ | ------------------- | ---------------------------------------- |
+| GET    | /                   | get 'Hello world' to prove that it works |
+| GET    | /usuarios?username= | get specific user by `username`          |
+| GET    | /usuarios           | get all users                            |
+| POST   | /usuarios           | add new user                             |
+| PUT    | /usuarios/:username | update user by `username`                |
+| DELETE | /usuarios/:username | remove user by `username`                |
+| GET    | /clasificacion?id=  | get specific clasification by `id`       |
+| GET    | /clasificacion      | get all clasifications                   |
+| POST   | /clasificacion      | add new clasification                    |
+| PUT    | /clasificacion/:id  | update clasification by `id`             |
+| DELETE | /clasificacion/:id  | remove clasification by `id`             |
+| GET    | /ingresos?id=       | get specific income by `id`              |
+| GET    | /ingresos           | get whole income list                    |
+| POST   | /ingresos           | add new income                           |
+| PUT    | /ingresos/:id       | update income by `id`                    |
+| DELETE | /ingresos/:id       | remove income by `id`                    |
+| GET    | /gastos?id=         | get specific expense by `id`             |
+| GET    | /gastos             | get all expenses                         |
+| POST   | /gastos             | add new expense                          |
+| PUT    | /gastos/:id         | update expense by `id`                   |
+| DELETE | /gastos/:id         | remove expense by `id`                   |
 
 ## Project Structure
 
@@ -70,7 +87,6 @@ Now you can use the API
 | src/configs      | Configuration files like db connection                               |
 | src/controllers  | Middle points between the HTTP requests and the SQL statements logic |
 | src/middlewares  | Additional bussiness logic                                           |
-| src/models       | Objects created to manage db data                                    |
 | src/routes       | Routes of the HTTP requests                                          |
 | src/services     | DB connection and SQL statements                                     |
 | src/utils        | Classes to assist some functionalities                               |
