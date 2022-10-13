@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const config = {
     db: {
-        host: process.env.HOST,
-        user: process.env.USER,
-        pass: process.env.PASS,
-        database: process.env.DB,
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        pass: process.env.DB_PASS,
+        database: process.env.DB_NAME
     },
     listPerPage: 10
 };

@@ -1,5 +1,5 @@
 const { promisify } = require('util');
-const mariadb = require('mariadb');
+const mariadb = require('mysql');
 const config = require('../configs/db.config');
 
 const dbconfig = {
@@ -7,7 +7,8 @@ const dbconfig = {
     user: config.db.user,
     password: config.db.pass,
     database: config.db.database,
-    connectionLimit: 10,
+    connectionLimit: 100,
+    port: 3308,
     trace: true //esto se quita en prod
 };
 
@@ -23,10 +24,14 @@ pool.getConnection((err, con) => {
             console.error('Conexión rechazada');
         if (err.code === 'ER_ACCESS_DENIED_ERROR')
             console.error('Acceso denegado');
+        console.error("El error es", err);
+        return;
     }
-    if (con) con.release();
-    console.log('Conectado a la db');
-
+    if (con) {
+        con.release();
+        console.log('Conectado a la db');
+    }
+    
     return;
 });
 

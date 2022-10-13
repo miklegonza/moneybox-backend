@@ -13,9 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/usuarios', usuariosRouter);
-app.use('/ingresos', ingresosRouter);
-app.use('/gastos', gastosRouter);
-app.use('/clasificacion', clasificacionRouter);
+//app.use('/ingresos', ingresosRouter);
+//app.use('/gastos', gastosRouter);
+//app.use('/clasificacion', clasificacionRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
@@ -25,7 +25,7 @@ app.use((err, req, res, next) => {
 });
 
 // Prueba 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).json({ message: 'Hello world' })
 });
 
