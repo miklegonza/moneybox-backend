@@ -12,6 +12,12 @@ async function get(page = 1, usuario) {
     return { data, meta };
 }
 
+async function getEarningsById(usuario) {
+    let stmt = "SELECT SUM(valor) AS total FROM " + config.db.database + ".ingresos where usuario = ?;";
+
+    return await pool.query(stmt, usuario);
+}
+
 async function create(ingreso) {
     const data = [
         // ingreso.ingreso,
@@ -39,4 +45,4 @@ async function remove(id) {
     return result.affectedRows ? "Ingreso eliminado" : "Error al eliminar ingreso";
 }
 
-module.exports = { get, create, update, remove };
+module.exports = { get, getEarningsById, create, update, remove };

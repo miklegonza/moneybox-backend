@@ -34,6 +34,7 @@ CREATE TABLE ingresos (
 CREATE TABLE gastos (
     id INT NOT NULL AUTO_INCREMENT,
     gasto VARCHAR(100) NOT NULL,
+    tipo VARCHAR(20) NULL,
     fecha VARCHAR(45) NOT NULL,
     valor DOUBLE NOT NULL,
     usuario INT NOT NULL,
@@ -64,11 +65,14 @@ INSERT INTO clasificacion(tipo, periodo, valor) VALUES
     ('ocio', 'mayo', '12000');
 
 INSERT INTO ingresos(ingreso, valor, usuario) VALUES
-    ('Salario', '2000000', 1),
-    ('Salario', '1500000', 2),
-    ('Salario', '5000000', 3),
-    ('Arriendo', '800000', 4),
-    ('Trabajo independiente', '20000', 5);
+    ('Salario', 2000000, 1),
+    ('Salario', 1500000, 2),
+    ('Salario', 5000000, 3),
+    ('Arriendo', 800000, 4),
+    ('Trabajo independiente', 20000, 5),
+    ('lo que sea', 100, 1),
+    ('lo que sea', 200, 1),
+    ('lo que sea', 300, 1);
 
 INSERT INTO gastos(gasto, fecha, valor, usuario, origen) VALUES
     ('Arriendo', '01/03/2022', 600000, 1, 1),

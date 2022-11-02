@@ -9,6 +9,15 @@ async function get(req, res, next) {
     }
 }
 
+async function getEarningsById(req, res, next) {
+    try {
+        res.json(await ingresosService.getEarningsById(req.query.username));
+    } catch (err) {
+        console.error('Get error:', err.message);
+        next(err);
+    }
+}
+
 async function create(req, res, next) {
     try {
         res.json(await ingresosService.create(req.body));
@@ -36,4 +45,4 @@ async function remove(req, res, next) {
     }
 }
 
-module.exports = { get, create, update, remove }
+module.exports = { get, getEarningsById, create, update, remove }
