@@ -3,7 +3,7 @@ const helper = require("../utils/helper.util");
 const config = require("../configs/db.config");
 
 async function get(page = 1, id) {
-    let stmt = (typeof id == "undefined") ? "SELECT * FROM " + config.db.database + ".ingresos;" : "SELECT * FROM " + config.db.database + ".ingresos WHERE id = ?;";
+    let stmt = (typeof id == "undefined") ? "SELECT * FROM " + config.db.database + ".ingresos;" : "SELECT * FROM " + config.db.database + ".usuario WHERE usuario = ?;";
 
     const rows = await pool.query(stmt, id);
     const data = helper.emptyOrRows(rows);
@@ -14,22 +14,21 @@ async function get(page = 1, id) {
 
 async function create(ingreso) {
     const data = [
-        ingreso.ingreso,
+        // ingreso.ingreso,
         ingreso.valor,
         ingreso.usuario
     ];
-    let stmt = "INSERT INTO " + config.db.database + ".ingresos (ingreso, valor, usuario) VALUES (?, ?, ?)";
+    let stmt = "INSERT INTO " + config.db.database + ".ingresos (valor, usuario) VALUES (?, ?)";
     const result = await pool.query(stmt, data);
     return result.affectedRows ? "Ingreso creado" : "Error al crear ingreso";
 }
 
 async function update(id, ingreso) {
     const data = [
-        ingreso.ingreso,
         ingreso.valor,
         id
     ];
-    let stmt = "UPDATE " + config.db.database + ".ingresos SET ingreso = ?, valor = ? WHERE id = ?;";
+    let stmt = "UPDATE " + config.db.database + ".ingresos SET valor = ? WHERE id = ?;";
     const result = await pool.query(stmt, data);
     return result.affectedRows ? "Ingreso modificado" : "Error al modificar ingreso";
 }

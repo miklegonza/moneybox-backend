@@ -11,7 +11,7 @@ async function get(req, res, next) {
 
 async function create(req, res, next) {
     try {
-        res.json(await ingresosService.create(req.query));
+        res.json(await ingresosService.create(req.body));
     } catch (err) {
         console.error('Post error:', err.message);
         next(err);
@@ -20,7 +20,7 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
     try {
-        res.json(await ingresosService.update(req.params.id, req.query));
+        res.json(await ingresosService.update(req.params.id, req.body));
     } catch (err) {
         console.error('Put error:', err.message);
         next(err);
