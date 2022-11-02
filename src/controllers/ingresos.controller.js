@@ -2,7 +2,7 @@ const ingresosService = require('../services/ingresos.service');
 
 async function get(req, res, next) {
     try {
-        res.json(await ingresosService.get(req.query.page, req.query.id));
+        res.json(await ingresosService.get(req.query.page, req.query.username));
     } catch (err) {
         console.error('Get error:', err.message);
         next(err);

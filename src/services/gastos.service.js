@@ -2,10 +2,10 @@ const pool = require("./db.service");
 const helper = require("../utils/helper.util");
 const config = require("../configs/db.config");
 
-async function get(page = 1, id) {
-    let stmt = (typeof id == "undefined") ? "SELECT * FROM " + config.db.database + ".gastos;" : "SELECT * FROM " + config.db.database + ".gastos WHERE usuario = ?;";
+async function get(page = 1, usuario) {
+    let stmt = (typeof usuario == "undefined") ? "SELECT * FROM " + config.db.database + ".gastos;" : "SELECT * FROM " + config.db.database + ".gastos WHERE usuario = ?;";
 
-    const rows = await pool.query(stmt, id);
+    const rows = await pool.query(stmt, usuario);
     const data = helper.emptyOrRows(rows);
     const meta = { page };
 
